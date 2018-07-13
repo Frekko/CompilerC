@@ -1,0 +1,90 @@
+#ifndef LEXEM_H
+#define LEXEM_H
+#include "variable.h"
+
+enum LexemType
+{
+	KEYWORD,
+	VARIABLE_DECLARATION,
+	FLOW_CONTROL,
+	VARIABLE_NAME,
+	NUMERIC_CONST,
+	OPERATION,
+	OPERATOR_DELIMITER,
+	PARENTHESES,
+	FUNCTION,
+};
+
+enum OPERATION_TYPE
+{
+	UNARY,
+	UNARY_PREFIX,
+	UNARY_POSTFIX,
+	BINARY,
+	UNARY_OR_BINARY
+};
+
+enum FLOW_CONTROLS
+{
+	IF = 30000,
+	FOR,
+	ELSE,
+};
+
+// Чем меньше код, тем выше приоритет!!!
+enum OPERATIONS
+{
+	ASSIGNMENT = 16666,
+	ASSIGNMENT_MULTIPLICATION,
+	MULTIPLICATION = 15090,
+//	DIVISION = 15091,
+	IS_EQUAL = 15500,
+	LESS_THAN,
+	LESS_OR_EQUAL,
+	GREATER_THAN,
+	GREATER_OR_EQUAL,
+	UNKNOWN_PLUS = 20100,
+//	UNARY_PLUS = UNKNOWN_PLUS - 10000,
+	BINARY_PLUS = UNKNOWN_PLUS - 5000,
+	UNKNOWN_MINUS = 20101,
+	UNARY_MINUS = UNKNOWN_MINUS - 10000,
+	BINARY_MINUS = UNKNOWN_MINUS - 5000,
+	UNKNOWN_INCREMENT = 19020,
+	POSTFIX_INCREMENT = 10020 - 1,
+	PREFIX_INCREMENT,
+};
+
+enum FUNCTIONS
+{
+	INPUT = 11000,
+	OUTPUT,
+};
+
+enum PARENTHESIS_TYPE
+{
+	NORMAL_OPEN = 10000,
+	NORMAL_CLOSE,
+	CURLY_OPEN,
+	CURLY_CLOSE,
+	SQUARE_OPEN,
+	SQUARE_CLOSE,
+};
+
+struct Lexem
+{
+	LexemType type;
+	VARIABLE_TYPE var_type;
+	OPERATION_TYPE op_type;
+	Variable_Record* variable;
+	int const_value;
+	int code;
+	int starting_position;
+	int last_position;
+	int pair_brace_position;
+	int line;
+
+	char* word_string;
+};
+
+
+#endif

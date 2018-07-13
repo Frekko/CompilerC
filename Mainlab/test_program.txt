@@ -1,0 +1,17 @@
+int n;
+input(n);
+if (n < 0)
+{
+	int res = 2;
+	output(n);
+}
+else
+{
+	int res = 1;
+	int i;
+	for (i = 1; i <= n; i++)
+	{
+		res *= i;
+	}
+	output(res);
+}
